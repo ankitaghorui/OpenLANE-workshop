@@ -42,14 +42,14 @@ The following figure is an example of a configuration file:
 
 ### Invoking OpenLANE
 
-•	In order to invoke openLANE, go to openlane directory and type ./flow.tcl –interactive  to invoke the openlane tool
+•	In order to invoke openLANE, go to openlane directory and type ```./flow.tcl –interactive```  to invoke the openlane tool
 
 ![image8](https://user-images.githubusercontent.com/78075225/106007748-a14a3a00-60dc-11eb-80cb-81b40fb1635b.JPG)
 
 •	./flow.tcl is the script which runs the OpenLANE flow
 •	OpenLANE can be run interactively or in autonomous mode.
 •	Invoking of open lane changes prompt to %
-•	The command %package require openlane 9.0 imports all the packages needed to run this flow
+•	The command ```%package require openlane 9.0``` imports all the packages needed to run this flow
 •	Next step is to prepare the design. The prep command is used to make file structure for our design.  
 
 ![image9](https://user-images.githubusercontent.com/78075225/106007907-ca6aca80-60dc-11eb-9dd7-56245cae8d8e.JPG)
@@ -153,4 +153,23 @@ The next step is to plot the output, input vs time in ngpice:
 ![10 plot command](https://user-images.githubusercontent.com/78075225/106034951-8cc86a80-60f9-11eb-86f8-84661829525d.JPG)
 
 ![11 plot 1](https://user-images.githubusercontent.com/78075225/106035161-c8fbcb00-60f9-11eb-8a85-ab3662c3d0c3.JPG)
+
+## Day 5 Final steps for RTL2GDS
+
+### Checking the part of flow
+In order to check which part of flow we  are currently in, use  command ```% echo $::env(CURRENT_DEF)```. The CURRENT_DEF holds the def file obtained after clock tree synthesis.
+
+![1 checking last action](https://user-images.githubusercontent.com/78075225/106044984-71179100-6106-11eb-8fa3-57d1fad1cb81.JPG)
+
+The next step is to generate the power distribution network. Use the command ```%gen_pdn``` to do so. The image shows the ongoing process of generating power distribution network:
+
+![2 generating power distribution network](https://user-images.githubusercontent.com/78075225/106045079-8b516f00-6106-11eb-869d-b8f7bf805637.JPG)
+
+### Routing
+After generating power distribution network use ```% echo $::env(CURRENT_DEF)```  again to see the updated current def file i.e. pdn.def.
+The next step is routing. Before that we will check the routing strategy. In order to do so use ```% echo $::env(ROUTING_STRATEGY)```. After this run routing by using the command ```%run_routing```.
+
+![3 routing strategy and routing](https://user-images.githubusercontent.com/78075225/106045185-a6bc7a00-6106-11eb-97e7-5c2dd21c5228.JPG)
+
+
 
