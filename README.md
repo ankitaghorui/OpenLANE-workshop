@@ -4,7 +4,7 @@ The openlane working directory consists of two directories-
 1.	Openlane_flow  
 2.	 Pdk
 
-![](image1.JPG)
+<img src = "image1.JPG">
 
 PDK
 
