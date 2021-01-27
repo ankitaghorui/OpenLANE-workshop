@@ -2,7 +2,7 @@
 ## Day 1 Inception of open-source EDA, OpenLANE and Sky130 PDK
 
 The openlane working directory consists of two directories-
-1.	Openlane_flow  
+1.	OpenLANE_flow  
 2.	 Pdk
 
 ![image1](https://user-images.githubusercontent.com/78075225/105988686-07779280-60c6-11eb-9d07-126252125cc5.JPG)
@@ -27,7 +27,7 @@ In our case we will be using Skywater130 PDK. The PDK directory consists of thre
 
 ![image5](https://user-images.githubusercontent.com/78075225/106007106-f33e9000-60db-11eb-948b-2f51b232c502.JPG)
 
-### Openlane_flow
+### OpenLANE_flow
  
 This directory consists of the design folder which consists of some in built designs. In creating a new design of our own, we create inside this design folder. For this project we will be using picorv32a design:
 
@@ -54,17 +54,17 @@ The following figure is an example of a configuration file:
 
 ![image9](https://user-images.githubusercontent.com/78075225/106007907-ca6aca80-60dc-11eb-9dd7-56245cae8d8e.JPG)
 
-•	After running this look in the openlane/design/picro32a folder and you will see runs folder being created. Inside the runs folder we will have a folder with the present date and inside it we have these folders:
+•	After running this look in the openLANE_flow/designs/picro32a folder and you will see runs folder being created. Inside the runs folder we will have a folder with the present date and inside it we have these folders:
 
 ![image10](https://user-images.githubusercontent.com/78075225/106007995-e40c1200-60dc-11eb-8bce-b42a6f2e72c2.JPG)
 
 The config.tcl file shown in this folder contains all the parameters used by OpenLANE for this specific run.
 
 ### Synthesis
-To run synthesis use run_synthesis command. The following picture is a snippet of synthesis completion.
+To run synthesis use '''%run_synthesis command'''. The following picture is a snippet of synthesis completion.
 
 ![image11](https://user-images.githubusercontent.com/78075225/106008167-0aca4880-60dd-11eb-86b9-a84ff7bdaf26.JPG)
 
-After synthesis,  file is created in synthesis folder.
+After synthesis is complete,the synthesis file is created in results subdiresctory under runs directory.
 
 ![image12](https://user-images.githubusercontent.com/78075225/106008249-1cabeb80-60dd-11eb-9ba3-868a0b8a2981.JPG)
