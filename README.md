@@ -1,16 +1,16 @@
 # OpenLANE-workshop
-Day 1 Inception of open-source EDA, OpenLANE and Sky130 PDK
+##Day 1 Inception of open-source EDA, OpenLANE and Sky130 PDK
+
 The openlane working directory consists of two directories-
 1.	Openlane_flow  
 2.	 Pdk
 
-<img src = "image1.JPG" width = 500 height =50>
 
 PDK
 
 The PDK folder consists of PDK related information. In our case we will be using Skywater130 PDK. The PDK directory consists of three sub directories which are mentioned as follows:
 
-<img src = "image2.JPG">
+
 
 1.	Skywater-pdk – Consists of foundry provided PDK related files such as timing libraries, LEV files etc.
 2.	Open_pdks – Contains scripts that make foundary PDKs to be compatible with open source EDA tools.
