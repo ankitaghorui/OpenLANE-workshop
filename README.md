@@ -4,6 +4,8 @@ The openlane working directory consists of two directories-
 1.	Openlane_flow  
 2.	 Pdk
 
+![](1 openlaneand pdk.JPG)
+
 
 PDK 
 The PDK folder consists of PDK related information. In our case we will be using Skywater130 PDK. The PDK directory consists of three sub directories which are mentioned as follows:
@@ -20,7 +22,7 @@ This directory consists of the design folder which consists of some in built des
 
 
 
-           Each design hierarchy comes with two distinct components:
+Each design hierarchy comes with two distinct components:
 1.	Src folder - Contains verilog files and sdc constraint files
 2.	Config.tcl files - Design specific configuration switches used by OpenLANE
 The following figure is an example of a configuration file:
