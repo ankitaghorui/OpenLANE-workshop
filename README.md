@@ -6,9 +6,12 @@ The openlane working directory consists of two directories-
 
 ![](image1.JPG)
 
+PDK
 
-PDK 
 The PDK folder consists of PDK related information. In our case we will be using Skywater130 PDK. The PDK directory consists of three sub directories which are mentioned as follows:
+
+![](image2.jpg)
+
 1.	Skywater-pdk – Consists of foundry provided PDK related files such as timing libraries, LEV files etc.
 2.	Open_pdks – Contains scripts that make foundary PDKs to be compatible with open source EDA tools.
 3.	Sky130A – The open-source compatible PDK files.  
