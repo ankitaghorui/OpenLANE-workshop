@@ -1,5 +1,5 @@
 # OpenLANE-workshop
-## Day 1 Inception of open-source EDA, OpenLANE and Sky130 PDK
+## Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
 
 The openlane working directory consists of two directories-
 1.	OpenLANE_flow  
@@ -68,3 +68,89 @@ To run synthesis use ```%run_synthesis command```. The following picture is a sn
 After synthesis is complete, the synthesis file is created in results subdiresctory under runs directory.
 
 ![image12](https://user-images.githubusercontent.com/78075225/106008249-1cabeb80-60dd-11eb-9ba3-868a0b8a2981.JPG)
+
+## Day 2: Floorplan and Placement
+
+### Floorplan
+The next step after synthesis is floorplan. In order to run floorplan in OpenLANE use ```%run_floorplan command```. The following figure gives an idea of the on going process after running this command and completion of floorplan:
+
+![1 floorplan ongoing](https://user-images.githubusercontent.com/78075225/106031343-29d4d480-60f5-11eb-9b2b-57c03c0bc78e.JPG)
+
+![2 floorplan competed](https://user-images.githubusercontent.com/78075225/106031437-48d36680-60f5-11eb-95d3-8772ff75f209.JPG)
+
+### Viewing Floorplan in Magic
+The Syntax for viewing floorplan in magic is:
+ ```magic -T <magic tech file> lef read <lef file> def read <def file>```
+In this case the magic technology file is sky130A.tech, and the other two files are merged lef file and def file of floorplan.
+
+![3 floorplann in magic](https://user-images.githubusercontent.com/78075225/106031521-656f9e80-60f5-11eb-8eef-53982cbe44b3.JPG)
+
+### Placement
+The floorplan is followed by placement Stage. To run placement in openLANE use the command ```%run_placement```. The following picture shows the completion of placement stage in openLANE.
+
+![4 placement completed](https://user-images.githubusercontent.com/78075225/106032112-12e2b200-60f6-11eb-859b-d6ec6dca3c63.JPG)
+
+### Viewing Placement in Magic
+We use the same syntax for viewing placement in magic as used during floorplan. Therefore the syntax will be
+```magic -T <magic tech file> lef read <lef file> def read <def file>```
+
+![5 command for placement in magic](https://user-images.githubusercontent.com/78075225/106032340-5e955b80-60f6-11eb-9c83-5474e31c64b2.JPG)
+
+In this case the the lef and def files are the merged lef file and def file of placement.
+ 
+![6 placement in magic](https://user-images.githubusercontent.com/78075225/106032437-7e2c8400-60f6-11eb-94f1-fcf4607987ad.JPG)
+
+## Day 3: Design library cell using Magic Layout and ngspice characterization
+ 
+### Cloning Reference Gitrepo
+
+For the inverter standard cell we take the help of below mentioned repository and clone it to our own design directory
+Reference link: https://github.com/nickson-jose/vsdstdcelldesign for cell files.
+
+![1 clone git repo](https://user-images.githubusercontent.com/78075225/106032844-fe52e980-60f6-11eb-8483-91b444863250.JPG)
+ 
+The next step is to copy the tech file skywater.tech file into the vsdstdcelldesign directory. 
+
+![2 copying tech file](https://user-images.githubusercontent.com/78075225/106033069-4a9e2980-60f7-11eb-8860-944d5408bd6d.JPG)
+
+Viewing the vststdcelldesign directory after copying the tech file:
+
+![3 vlsidesignfolder conisting tech file](https://user-images.githubusercontent.com/78075225/106033126-5db0f980-60f7-11eb-8403-98d053392420.JPG)
+
+### Viewing the Inverter Standard Cell in Magic
+The following image shows the command to invoke the standard cell in magic:
+
+![4 magic command for inverter](https://user-images.githubusercontent.com/78075225/106033359-ad8fc080-60f7-11eb-810e-efd057ed6a8b.JPG)
+
+### Inverter Layout in Magic
+
+![5 inverter in magic](https://user-images.githubusercontent.com/78075225/106033971-563e2000-60f8-11eb-903b-adac9434d292.JPG)
+
+The tkcon window gives detailed information about the various parts of the cell when prompted to ‘what’.
+
+![5 snap showing details](https://user-images.githubusercontent.com/78075225/106034159-91d8ea00-60f8-11eb-8a9e-5af25f668020.JPG)
+
+### Extraction to Spice using Magic
+```extract all``` creates the .ext file and ```ext2spice``` creates the .spice file from the .ext file commands to extract to spice:
+
+![6 extraction](https://user-images.githubusercontent.com/78075225/106034270-ba60e400-60f8-11eb-80ff-faeb74182213.JPG)
+
+Extraction process will lead to creation of the Spice deck file. The following image shows the Spice Deck file which is modified as per the inverted design specifications :
+
+![7 spicefile](https://user-images.githubusercontent.com/78075225/106034715-407d2a80-60f9-11eb-899e-3a34852028b4.JPG)
+
+### Viewing the inverter in Ngspice
+The next step is to view the inverter spice file in ngspice:
+
+![8 invoking ngspice](https://user-images.githubusercontent.com/78075225/106034809-6276ad00-60f9-11eb-8426-b08d1e12934e.JPG)
+
+The following image shows the inverter spice file in ngspice:
+
+![9 ngspice view](https://user-images.githubusercontent.com/78075225/106034894-77ebd700-60f9-11eb-802f-1eb848b7fbab.JPG)
+
+The next step is to plot the output, input vs time in ngpice: 
+
+![10 plot command](https://user-images.githubusercontent.com/78075225/106034951-8cc86a80-60f9-11eb-86f8-84661829525d.JPG)
+
+![11 plot 1](https://user-images.githubusercontent.com/78075225/106035161-c8fbcb00-60f9-11eb-8a85-ab3662c3d0c3.JPG)
+
