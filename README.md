@@ -61,10 +61,10 @@ The following figure is an example of a configuration file:
 The config.tcl file shown in this folder contains all the parameters used by OpenLANE for this specific run.
 
 ### Synthesis
-To run synthesis use '''%run_synthesis command'''. The following picture is a snippet of synthesis completion.
+To run synthesis use ```%run_synthesis command```. The following picture is a snippet of synthesis completion.
 
 ![image11](https://user-images.githubusercontent.com/78075225/106008167-0aca4880-60dd-11eb-86b9-a84ff7bdaf26.JPG)
 
-After synthesis is complete,the synthesis file is created in results subdiresctory under runs directory.
+After synthesis is complete, the synthesis file is created in results subdiresctory under runs directory.
 
 ![image12](https://user-images.githubusercontent.com/78075225/106008249-1cabeb80-60dd-11eb-9ba3-868a0b8a2981.JPG)
