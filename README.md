@@ -1,4 +1,17 @@
-# OpenLANE-workshop
+![advanced_physical_design](https://user-images.githubusercontent.com/78075225/106164823-6a455880-61b0-11eb-93f9-1f9d29dd7510.png)
+
+# Advanced Physical Design Using Openlane/Sky130
+
+## Introduction
+
+This project consists of a brief description of a five day workshop of Physical design using openLANE and Sky130 PDK.
+
+### About Openlane:
+OpenLane is an open-source VLSI flow built around open-source tools.It consists of several components such as OpenROAD, Yosys, Magic, Netgen, Fault, OpenPhySyn, SPEF-Extractor and custom methodology scripts for design exploration and optimization. With openLANE we can have complete RTL to GDSII format without human intervention.
+
+### SkyWater Open Source PDK
+The SkyWater Open Source PDK is a collaboration between Google and SkyWater Technology Foundry to provide a fully open source Process Design Kit and related resources. We will be using Sky130 PDK for this project.
+
 ## Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
 
 The openlane working directory consists of two directories-
