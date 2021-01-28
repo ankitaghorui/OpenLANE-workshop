@@ -2,17 +2,57 @@
 
 # Advanced Physical Design Using Openlane/Sky130
 
+<details>
+ <summary><b>Table of Contents</b></summary>
+
+- [Introduction](#introduction)
+  * [About OpenLANE](#about-openlane)
+  * [SkyWater Open Source PDK](#skywater-open-source-pdk)
+- [Day 1 Inception of open-source EDA and OpenLANE and Sky130 PDK](#day-1-inception-of-open-source-eda-and-openlane-and-sky130-pdk)
+  * [PDK](#pdk)
+  * [OpenLANEflow](#openlaneflow)
+  * [Invoking OpenLANE](#invoking-openlane)
+  * [Synthesis](#synthesis)
+- [Day 2 Floorplan and Placement](#day-2-floorplan-and-placement)
+  * [Floorplan](#floorplan)
+  * [Viewing Floorplan in Magic](#viewing-floorplan-in-magic)
+  * [Placement](#placement)
+  * [Viewing Placement in Magic](#viewing-placement-in-magic)
+- [Day 3 Design library cell using Magic Layout and ngspice characterization](#day-3-design-library-cell-using-magic-layout-and-ngspice-characterization)
+  * [Cloning Reference Gitrepo](#cloning-reference-gitrepo)
+  * [Viewing the Inverter Standard Cell in Magic](#viewing-the-inverter-standard-cell-in-magic)
+  * [Inverter Layout in Magic](#inverter-layout-in-magic)
+  * [Extraction to Spice using Magic](#extraction-to-spice-using-magic)
+  * [Viewing the inverter in Ngspice](#viewing-the-inverter-in-ngspice)
+- [Day 4 Pre-layout timming analysis and CTS](#day-4-pre-layout-timming-analysis-and-cts)
+  * [PnR Guidelines while making Standard Cell set](#pnr-guidelines-while-making-standard-cell-set)
+  * [LEF File](#lef-file)
+  * [Including Custom Cells in OpenLANE](#including-custom-cells-in-openlane)
+  * [Viewing the Custom Inverter cell in Magic](#viewing-the-custom-inverter-cell-in-magic)
+  * [Viewing the standard inverter cell](#viewing-the-standard-inverter-cell)
+  * [CTS](#cts)
+  * [Post-CTS STA Analysis](#post-cts-sta-analysis)
+- [Day 5 Final steps for RTL2GDS](#day-5-final-steps-for-rtl2gds)
+  * [Checking the part of flow](#checking-the-part-of-flow)
+  * [Routing](#routing)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'></a></i></small>
+
+</details>
+
 ## Introduction
 
 This project consists of a brief description of a five day workshop of Physical design using openLANE and Sky130 PDK.
 
-### About OpenLANE:
+### About OpenLANE
 OpenLane is an open-source VLSI flow built around open-source tools.It consists of several components such as OpenROAD, Yosys, Magic, Netgen, Fault, OpenPhySyn, SPEF-Extractor and custom methodology scripts for design exploration and optimization. With openLANE we can have complete RTL to GDSII format without human intervention.
 
 ### SkyWater Open Source PDK
 The SkyWater Open Source PDK is a collaboration between Google and SkyWater Technology Foundry to provide a fully open source Process Design Kit and related resources. We will be using Sky130 PDK for this project.
 
-## Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
+## Day 1 Inception of open-source EDA and OpenLANE and Sky130 PDK
 
 The openlane working directory consists of two directories-
 1.	OpenLANE_flow  
@@ -40,7 +80,7 @@ In our case we will be using Skywater130 PDK. The PDK directory consists of thre
 
 ![image5](https://user-images.githubusercontent.com/78075225/106007106-f33e9000-60db-11eb-948b-2f51b232c502.JPG)
 
-### OpenLANE_flow
+### OpenLANEflow
  
 This directory consists of the design folder which consists of some in built designs. In creating a new design of our own, we create inside this design folder. For this project we will be using picorv32a design:
 
@@ -82,7 +122,7 @@ After synthesis is complete, the synthesis file is created in results subdiresct
 
 ![image12](https://user-images.githubusercontent.com/78075225/106008249-1cabeb80-60dd-11eb-9ba3-868a0b8a2981.JPG)
 
-## Day 2: Floorplan and Placement
+## Day 2 Floorplan and Placement
 
 ### Floorplan
 The next step after synthesis is floorplan. In order to run floorplan in OpenLANE use ```%run_floorplan command```. The following figure gives an idea of the on going process after running this command and completion of floorplan:
@@ -92,6 +132,7 @@ The next step after synthesis is floorplan. In order to run floorplan in OpenLAN
 ![2 floorplan competed](https://user-images.githubusercontent.com/78075225/106031437-48d36680-60f5-11eb-95d3-8772ff75f209.JPG)
 
 ### Viewing Floorplan in Magic
+
 The Syntax for viewing floorplan in magic is:
  ```magic -T <magic tech file> lef read <lef file> def read <def file>```
 In this case the magic technology file is sky130A.tech, and the other two files are merged lef file and def file of floorplan.
@@ -113,7 +154,7 @@ In this case the the lef and def files are the merged lef file and def file of p
  
 ![6 placement in magic](https://user-images.githubusercontent.com/78075225/106032437-7e2c8400-60f6-11eb-94f1-fcf4607987ad.JPG)
 
-## Day 3: Design library cell using Magic Layout and ngspice characterization
+## Day 3 Design library cell using Magic Layout and ngspice characterization
  
 ### Cloning Reference Gitrepo
 
@@ -144,6 +185,7 @@ The tkcon window gives detailed information about the various parts of the cell 
 ![5 snap showing details](https://user-images.githubusercontent.com/78075225/106034159-91d8ea00-60f8-11eb-8a9e-5af25f668020.JPG)
 
 ### Extraction to Spice using Magic
+
 ```extract all``` creates the .ext file and ```ext2spice``` creates the .spice file from the .ext file commands to extract to spice:
 
 ![6 extraction](https://user-images.githubusercontent.com/78075225/106034270-ba60e400-60f8-11eb-80ff-faeb74182213.JPG)
@@ -167,9 +209,9 @@ The next step is to plot the output, input vs time in ngpice:
 
 ![11 plot 1](https://user-images.githubusercontent.com/78075225/106035161-c8fbcb00-60f9-11eb-8a85-ab3662c3d0c3.JPG)
 
-### Day 4 Pre-layout timming analysis and CTS
+## Day 4 Pre-layout timming analysis and CTS
 
-## PnR Guidelines while making Standard Cell set
+### PnR Guidelines while making Standard Cell set
 1.Input and output port must lie on vertical and horizontal tracks. 2.Width of standard cell should be odd multiple of track horizontal pitch and likewise height should an odd multiple of track vertical pitch.In order to do so we will adjust the grid definition as per the track definition. The track file is shown in the following picture:
 
 ![1 track file](https://user-images.githubusercontent.com/78075225/106118292-f12b0e80-6179-11eb-8738-8275a4d286ab.JPG)
@@ -290,6 +332,10 @@ After generating power distribution network use ```% echo $::env(CURRENT_DEF)```
 The next step is routing. Before that we will check the routing strategy. In order to do so use ```% echo $::env(ROUTING_STRATEGY)```. After this run routing by using the command ```%run_routing```.
 
 ![3 routing strategy and routing](https://user-images.githubusercontent.com/78075225/106045185-a6bc7a00-6106-11eb-97e7-5c2dd21c5228.JPG)
+
+## Contact
+
+## Acknowledgements
 
 
 
