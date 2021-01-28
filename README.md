@@ -6,7 +6,7 @@
 
 This project consists of a brief description of a five day workshop of Physical design using openLANE and Sky130 PDK.
 
-### About Openlane:
+### About OpenLANE:
 OpenLane is an open-source VLSI flow built around open-source tools.It consists of several components such as OpenROAD, Yosys, Magic, Netgen, Fault, OpenPhySyn, SPEF-Extractor and custom methodology scripts for design exploration and optimization. With openLANE we can have complete RTL to GDSII format without human intervention.
 
 ### SkyWater Open Source PDK
