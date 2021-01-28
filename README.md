@@ -44,10 +44,15 @@
 
 ## Introduction
 
-This project consists of a brief description of a five day workshop of Physical design using openLANE and Sky130 PDK.
+The file consists of a brief description of a five day workshop of Physical design using openLANE and Sky130 PDK. The following links can be used in the below mentioned order to install the necessary tools into your systems:
+
+Guide to vsdflow installation: https://www.udemy.com/course/vsd-a-complete-guide-to-install-open-source-eda-tools/
+
+Guide OpenLANE/Sky130 Tool installation: https://www.udemy.com/course/vsd-a-complete-guide-to-install-openlane-and-sky130nm-pdk/
+
 
 ### About OpenLANE
-OpenLane is an open-source VLSI flow built around open-source tools.It consists of several components such as OpenROAD, Yosys, Magic, Netgen, Fault, OpenPhySyn, SPEF-Extractor and custom methodology scripts for design exploration and optimization. With openLANE we can have complete RTL to GDSII format without human intervention.
+OpenLane is an open-source VLSI flow built around open-source tools. It consists of several components such as OpenROAD, Yosys, Magic, Netgen, Fault, OpenPhySyn, SPEF-Extractor and custom methodology scripts for design exploration and optimization. With openLANE we can have complete RTL to GDSII format without human intervention.
 
 ### SkyWater Open Source PDK
 The SkyWater Open Source PDK is a collaboration between Google and SkyWater Technology Foundry to provide a fully open source Process Design Kit and related resources. We will be using Sky130 PDK for this project.
@@ -56,12 +61,12 @@ The SkyWater Open Source PDK is a collaboration between Google and SkyWater Tech
 
 The openlane working directory consists of two directories-
 1.	OpenLANE_flow  
-2.	 Pdk
+2.	 Pdks
 
 ![image1](https://user-images.githubusercontent.com/78075225/105988686-07779280-60c6-11eb-9d07-126252125cc5.JPG)
 
 ### PDK
-The PDK folder consists of PDK related information. 
+The PDKs folder consists of PDK related information. 
 
 ![image2](https://user-images.githubusercontent.com/78075225/105989256-dea3cd00-60c6-11eb-9937-96d4c292cbb8.JPG)
 
@@ -72,11 +77,11 @@ In our case we will be using Skywater130 PDK. The PDK directory consists of thre
 
 ![image3](https://user-images.githubusercontent.com/78075225/105989605-5ffb5f80-60c7-11eb-96bd-f1e2ec6fca13.JPG)
 
-1.	Libs.tech –Contains files specific to tools
+1.	Libs.tech - Contains files specific to tools
 
 ![image4](https://user-images.githubusercontent.com/78075225/106006981-d2763a80-60db-11eb-90fd-2188d84d72ee.JPG)
 
-2.	Libs.ref-  contains process specific files
+2.	Libs.ref - Contains process specific files
 
 ![image5](https://user-images.githubusercontent.com/78075225/106007106-f33e9000-60db-11eb-948b-2f51b232c502.JPG)
 
@@ -95,26 +100,26 @@ The following figure is an example of a configuration file:
 
 ### Invoking OpenLANE
 
-•	In order to invoke openLANE, go to openlane directory and type ```./flow.tcl –interactive```  to invoke the openlane tool
+•	In order to invoke openLANE, go to openlane directory and type ```./flow.tcl –interactive```  to invoke the openlane tool.
 
 ![image8](https://user-images.githubusercontent.com/78075225/106007748-a14a3a00-60dc-11eb-80cb-81b40fb1635b.JPG)
 
-•	./flow.tcl is the script which runs the OpenLANE flow
+•	```./flow.tcl``` is the script which runs the OpenLANE flow.
 •	OpenLANE can be run interactively or in autonomous mode.
-•	Invoking of open lane changes prompt to %
-•	The command ```%package require openlane 9.0``` imports all the packages needed to run this flow
+•	Invoking of open lane changes prompt to %.
+•	The command ```%package require openlane 9.0``` imports all the packages needed to run this flow.
 •	Next step is to prepare the design. The prep command is used to make file structure for our design.  
 
 ![image9](https://user-images.githubusercontent.com/78075225/106007907-ca6aca80-60dc-11eb-9dd7-56245cae8d8e.JPG)
 
-•	After running this look in the openLANE_flow/designs/picro32a folder and you will see runs folder being created. Inside the runs folder we will have a folder with the present date and inside it we have these folders:
+•	After running this look in the ```openLANE_flow/designs/picro32a/runs/``` folder where a file dated with latest date will be. Inside the date folder we will have the following files:
 
 ![image10](https://user-images.githubusercontent.com/78075225/106007995-e40c1200-60dc-11eb-8bce-b42a6f2e72c2.JPG)
 
 The config.tcl file shown in this folder contains all the parameters used by OpenLANE for this specific run.
 
 ### Synthesis
-To run synthesis use ```%run_synthesis command```. The following picture is a snippet of synthesis completion.
+To run synthesis use ```%run_synthesis``` command. The following picture is a snippet of synthesis completion.
 
 ![image11](https://user-images.githubusercontent.com/78075225/106008167-0aca4880-60dd-11eb-86b9-a84ff7bdaf26.JPG)
 
@@ -125,7 +130,7 @@ After synthesis is complete, the synthesis file is created in results subdiresct
 ## Day 2 Floorplan and Placement
 
 ### Floorplan
-The next step after synthesis is floorplan. In order to run floorplan in OpenLANE use ```%run_floorplan command```. The following figure gives an idea of the on going process after running this command and completion of floorplan:
+The next step after synthesis is floorplan. In order to run floorplan in OpenLANE use ```%run_floorplan``` command. The following figures gives an idea of the on going process after running this command and completion of floorplan:
 
 ![1 floorplan ongoing](https://user-images.githubusercontent.com/78075225/106031343-29d4d480-60f5-11eb-9b2b-57c03c0bc78e.JPG)
 
@@ -140,7 +145,7 @@ In this case the magic technology file is sky130A.tech, and the other two files 
 ![3 floorplann in magic](https://user-images.githubusercontent.com/78075225/106031521-656f9e80-60f5-11eb-8eef-53982cbe44b3.JPG)
 
 ### Placement
-The floorplan is followed by placement Stage. To run placement in openLANE use the command ```%run_placement```. The following picture shows the completion of placement stage in openLANE.
+The floorplan is followed by placement stage. To run placement in openLANE use the command ```%run_placement```. The following picture shows the completion of placement stage in openLANE.
 
 ![4 placement completed](https://user-images.githubusercontent.com/78075225/106032112-12e2b200-60f6-11eb-859b-d6ec6dca3c63.JPG)
 
@@ -158,12 +163,13 @@ In this case the the lef and def files are the merged lef file and def file of p
  
 ### Cloning Reference Gitrepo
 
-For the inverter standard cell we take the help of below mentioned repository and clone it to our own design directory
-Reference link: https://github.com/nickson-jose/vsdstdcelldesign for cell files.
+For the inverter standard cell we take the help of below mentioned repository and clone it to our own design directory for cell files.
+
+Reference link: https://github.com/nickson-jose/vsdstdcelldesign 
 
 ![1 clone git repo](https://user-images.githubusercontent.com/78075225/106032844-fe52e980-60f6-11eb-8483-91b444863250.JPG)
  
-The next step is to copy the tech file skywater.tech file into the vsdstdcelldesign directory. 
+The next step is to copy the tech file ```skywater.tech``` file into the vsdstdcelldesign directory. 
 
 ![2 copying tech file](https://user-images.githubusercontent.com/78075225/106033069-4a9e2980-60f7-11eb-8860-944d5408bd6d.JPG)
 
@@ -190,7 +196,7 @@ The tkcon window gives detailed information about the various parts of the cell 
 
 ![6 extraction](https://user-images.githubusercontent.com/78075225/106034270-ba60e400-60f8-11eb-80ff-faeb74182213.JPG)
 
-Extraction process will lead to creation of the Spice deck file. The following image shows the Spice Deck file which is modified as per the inverted design specifications :
+Extraction process will lead to creation of the Spice deck file. The following image shows the Spice Deck file which is modified as per the inverter design specifications :
 
 ![7 spicefile](https://user-images.githubusercontent.com/78075225/106034715-407d2a80-60f9-11eb-899e-3a34852028b4.JPG)
 
@@ -203,7 +209,7 @@ The following image shows the inverter spice file in ngspice:
 
 ![9 ngspice view](https://user-images.githubusercontent.com/78075225/106034894-77ebd700-60f9-11eb-802f-1eb848b7fbab.JPG)
 
-The next step is to plot the output, input vs time in ngpice: 
+And then plot the output, input vs time in ngpice: 
 
 ![10 plot command](https://user-images.githubusercontent.com/78075225/106034951-8cc86a80-60f9-11eb-86f8-84661829525d.JPG)
 
@@ -212,7 +218,9 @@ The next step is to plot the output, input vs time in ngpice:
 ## Day 4 Pre-layout timming analysis and CTS
 
 ### PnR Guidelines while making Standard Cell set
-1.Input and output port must lie on vertical and horizontal tracks. 2.Width of standard cell should be odd multiple of track horizontal pitch and likewise height should an odd multiple of track vertical pitch.In order to do so we will adjust the grid definition as per the track definition. The track file is shown in the following picture:
+1.Input and output port must lie on vertical and horizontal tracks. 
+2.Width of standard cell should be an odd multiple of track horizontal pitch and height should an odd multiple of track vertical pitch.
+In order to do so we will adjust the grid definition as per the track definition. The track file is shown in the following picture:
 
 ![1 track file](https://user-images.githubusercontent.com/78075225/106118292-f12b0e80-6179-11eb-8738-8275a4d286ab.JPG)
 
@@ -226,11 +234,11 @@ View after converging grid definitions to track definitions:
 
 ### LEF File
 
-The LEF file has the information about input ports, output ports , ground and power ports. These are th eonly information needed fo rplace and route. LEF file in a way protect our IP. Our aim is to extract lef file from mag file. In order to create the lef file use write lef in tkcon window:
+The LEF file has the information about input ports, output ports , ground and power ports. Our aim is to extract lef file from mag file. In order to create the lef file use ```lef write``` in tkcon window:
 
 ![4 lef file creation](https://user-images.githubusercontent.com/78075225/106123692-4538f180-6180-11eb-9610-54883fd8f997.JPG)
 
-The lef file gets created inside vststdcelldesign directory:
+The lef file gets created inside vsdstdcelldesign directory:
 
 ![5 lef file created](https://user-images.githubusercontent.com/78075225/106123768-5da90c00-6180-11eb-8cfc-afafc8025dbb.JPG)
 
@@ -238,7 +246,7 @@ The lef file:
 
 ![6 lef file](https://user-images.githubusercontent.com/78075225/106123845-74e7f980-6180-11eb-8b6c-72009e55b85d.JPG)
 
-Copying the lef file into src file of picorvv32a:
+Copying the lef file into src file of picorv32a:
 
 ![7 lef file included in src](https://user-images.githubusercontent.com/78075225/106123931-89c48d00-6180-11eb-9bd0-5ad2372159d9.JPG)
 
@@ -248,11 +256,11 @@ Viewing the src file containing the lef file and also the libraries:
 
 ### Including Custom Cells in OpenLANE
 
-Modify the ```picorv32a/src/config.tcl``` file as :
+Modify the ```picorv32a/src/config.tcl``` file as per the library specifications present in src file:
 
 ![9 config tclfile](https://user-images.githubusercontent.com/78075225/106124098-baa4c200-6180-11eb-87b6-8e4c737642fe.JPG)
 
-The next step is to prep the design and then the commands ```set lefs [glob $::env(DESIGN_DIR)/src/*.lef]``` and ```add_lefs -src $lefs``` to include sky130_vsdinv.lef in ```~/tmp/meged.lef``` in openlane flow. Then run synthesis. We see slack violations after synthesis:
+The next step is to prep the design and then use commands ```set lefs [glob $::env(DESIGN_DIR)/src/*.lef]``` and ```add_lefs -src $lefs``` to include ```sky130_vsdinv.lef``` in ```~/tmp/meged.lef``` in openlane flow. Then run synthesis. We see slack violations after synthesis:
 
 ![10 first synthesis](https://user-images.githubusercontent.com/78075225/106124214-d8722700-6180-11eb-815c-0a7e316c9bf6.JPG)
 
@@ -266,7 +274,7 @@ After doing so, we run synthesis again and see the results:
 
 ### Viewing the Custom Inverter cell in Magic
 
-Run floorplan and placement. Inmvoke magic:
+Run floorplan and placement and then invoke magic:
 
 ![13 placement](https://user-images.githubusercontent.com/78075225/106124517-2d15a200-6181-11eb-815c-2d2da0cbfc2d.JPG)
 
@@ -296,7 +304,7 @@ After running floorplan and standard cell placement in OpenLANE we are ready to 
 
 ![20 cts complete](https://user-images.githubusercontent.com/78075225/106125204-deb4d300-6181-11eb-8cbc-3793ea72fabe.JPG)
 
-We can also check the specifications associated with the run_cts using the following commands:
+We can also check the specifications associated with the ```run_cts``` using the following commands:
 
 ![21 cts specifications](https://user-images.githubusercontent.com/78075225/106125314-04da7300-6182-11eb-848c-4b4dc4ffe431.JPG)
 
