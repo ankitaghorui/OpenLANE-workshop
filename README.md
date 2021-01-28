@@ -335,7 +335,13 @@ The next step is routing. Before that we will check the routing strategy. In ord
 
 ## Contact
 
+Ankita Ghorui - ankitaghorui97@gmail.com
+
 ## Acknowledgements
+
+[Nickson Jose - VSD VLSI Engineer](https://github.com/nickson-jose)
+
+[Kunal Ghosh - Co-founder (VSD Corp. Pvt. Ltd)](https://github.com/kunalg123)
 
 
 
