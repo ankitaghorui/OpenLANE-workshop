@@ -154,6 +154,113 @@ The next step is to plot the output, input vs time in ngpice:
 
 ![11 plot 1](https://user-images.githubusercontent.com/78075225/106035161-c8fbcb00-60f9-11eb-8a85-ab3662c3d0c3.JPG)
 
+### Day 4 Pre-layout timming analysis and CTS
+
+## PnR Guidelines while making Standard Cell set
+1.Input and output port must lie on vertical and horizontal tracks. 2.Width of standard cell should be odd multiple of track horizontal pitch and likewise height should an odd multiple of track vertical pitch.In order to do so we will adjust the grid definition as per the track definition. The track file is shown in the following picture:
+
+![1 track file](https://user-images.githubusercontent.com/78075225/106118292-f12b0e80-6179-11eb-8738-8275a4d286ab.JPG)
+
+Setting grid definition as per the track definition:
+
+![2 setting grid as per tracks](https://user-images.githubusercontent.com/78075225/106118524-35b6aa00-617a-11eb-9740-cb3ba9ad5316.JPG)
+
+View after converging grid definitions to track definitions:
+
+![3 dia after grid](https://user-images.githubusercontent.com/78075225/106118630-5252e200-617a-11eb-8ea6-1afca5fafd86.JPG)
+
+### LEF File
+
+The LEF file has the information about input ports, output ports , ground and power ports. These are th eonly information needed fo rplace and route. LEF file in a way protect our IP. Our aim is to extract lef file from mag file. In order to create the lef file use write lef in tkcon window:
+
+![4 lef file creation](https://user-images.githubusercontent.com/78075225/106123692-4538f180-6180-11eb-9610-54883fd8f997.JPG)
+
+The lef file gets created inside vststdcelldesign directory:
+
+![5 lef file created](https://user-images.githubusercontent.com/78075225/106123768-5da90c00-6180-11eb-8cfc-afafc8025dbb.JPG)
+
+The lef file:
+
+![6 lef file](https://user-images.githubusercontent.com/78075225/106123845-74e7f980-6180-11eb-8b6c-72009e55b85d.JPG)
+
+Copying the lef file into src file of picorvv32a:
+
+![7 lef file included in src](https://user-images.githubusercontent.com/78075225/106123931-89c48d00-6180-11eb-9bd0-5ad2372159d9.JPG)
+
+Viewing the src file containing the lef file and also the libraries:
+
+![8 src having lef as well libraries](https://user-images.githubusercontent.com/78075225/106123976-96e17c00-6180-11eb-8f23-f0b9902e5632.JPG)
+
+### Including Custom Cells in OpenLANE
+
+Modify the ```picorv32a/src/config.tcl``` file as :
+
+![9 config tclfile](https://user-images.githubusercontent.com/78075225/106124098-baa4c200-6180-11eb-87b6-8e4c737642fe.JPG)
+
+The next step is to prep the design and then the commands ```set lefs [glob $::env(DESIGN_DIR)/src/*.lef]``` and ```add_lefs -src $lefs``` to include sky130_vsdinv.lef in ```~/tmp/meged.lef``` in openlane flow. Then run synthesis. We see slack violations after synthesis:
+
+![10 first synthesis](https://user-images.githubusercontent.com/78075225/106124214-d8722700-6180-11eb-815c-0a7e316c9bf6.JPG)
+
+The following figure shows some modifications to fix slack violations:
+
+![11 chnages to reduce error](https://user-images.githubusercontent.com/78075225/106124347-ffc8f400-6180-11eb-8621-2343881aabe7.JPG)
+
+After doing so, we run synthesis again and see the results:
+
+![12 updated after synthesis](https://user-images.githubusercontent.com/78075225/106124409-11120080-6181-11eb-8ccc-17a201bb4f59.JPG)
+
+### Viewing the Custom Inverter cell in Magic
+
+Run floorplan and placement. Inmvoke magic:
+
+![13 placement](https://user-images.githubusercontent.com/78075225/106124517-2d15a200-6181-11eb-815c-2d2da0cbfc2d.JPG)
+
+### Viewing the standard inverter cell
+
+![14 sky130](https://user-images.githubusercontent.com/78075225/106124595-428acc00-6181-11eb-891a-a0b96ce47d95.JPG)
+
+![15 sky130inv](https://user-images.githubusercontent.com/78075225/106124669-56cec900-6181-11eb-9d53-a3053b64b8cb.JPG)
+
+Copy ```my_base.sdc``` to ```picorc32a/src```:
+
+![16 copying mybase file](https://user-images.githubusercontent.com/78075225/106124799-7cf46900-6181-11eb-8397-3fa8b87cd1c6.JPG)
+
+```my_base.sdc``` file is as shown:
+
+![17 mybase sdc file](https://user-images.githubusercontent.com/78075225/106124889-97c6dd80-6181-11eb-944f-87f750087c4a.JPG)
+
+We can further reduce slack violations by changing the fanout:
+
+![18 change fanout](https://user-images.githubusercontent.com/78075225/106124951-a8775380-6181-11eb-8d26-b70a19e37a77.JPG)
+
+![19 reduced slack with fanout](https://user-images.githubusercontent.com/78075225/106125020-b331e880-6181-11eb-9ab6-c5a44c18b050.JPG)
+
+### CTS
+
+After running floorplan and standard cell placement in OpenLANE we are ready to insert our clock tree for sequential elements in our design. To do so use ```run_cts```.
+
+![20 cts complete](https://user-images.githubusercontent.com/78075225/106125204-deb4d300-6181-11eb-8cbc-3793ea72fabe.JPG)
+
+We can also check the specifications associated with the run_cts using the following commands:
+
+![21 cts specifications](https://user-images.githubusercontent.com/78075225/106125314-04da7300-6182-11eb-848c-4b4dc4ffe431.JPG)
+
+### Post-CTS STA Analysis
+
+OpenLANE has the OpenROAD application integrated into its flow. The OpenROAD application has OpenSTA integrated into its flow. Therefore, we can perform STA analysis from within OpenLANE by invoking OpenROAD.To invoke OpenROAD from OpenLANE:
+
+![22 invoking openroad inside openlane](https://user-images.githubusercontent.com/78075225/106125388-1de32400-6182-11eb-92d3-703eb3e81e54.JPG)
+
+In OpenROAD the timing analysis is done by creating a .db database file. This database file is created from the post-cts LEF and DEF files. To generate the .db files within OpenROAD:
+
+![23 db file](https://user-images.githubusercontent.com/78075225/106125440-2fc4c700-6182-11eb-9081-55306cffaa55.JPG)
+
+After .db generation users can perform tool configuration followed by reporting the propagated clock timing analysis:
+
+![24 cts analysis after min](https://user-images.githubusercontent.com/78075225/106125505-4539f100-6182-11eb-957c-367a25031dfb.JPG)
+
+![25 timing value after cts](https://user-images.githubusercontent.com/78075225/106125566-5420a380-6182-11eb-9179-3fd9d3f1836d.JPG)
+
 ## Day 5 Final steps for RTL2GDS
 
 ### Checking the part of flow
