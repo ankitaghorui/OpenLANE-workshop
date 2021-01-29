@@ -1,6 +1,6 @@
 ![advanced_physical_design](https://user-images.githubusercontent.com/78075225/106164823-6a455880-61b0-11eb-93f9-1f9d29dd7510.png)
 
-# Advanced Physical Design Using Openlane/Sky130
+## Advanced Physical Design Using Openlane/Sky130
 
 <details>
  <summary><b>Table of Contents</b></summary>
@@ -35,6 +35,7 @@
 - [Day 5 Final steps for RTL2GDS](#day-5-final-steps-for-rtl2gds)
   * [Checking the part of flow](#checking-the-part-of-flow)
   * [Routing](#routing)
+  * [SPEF Extraction](#spef-extraction)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
 
@@ -105,9 +106,13 @@ The following figure is an example of a configuration file:
 ![image8](https://user-images.githubusercontent.com/78075225/106007748-a14a3a00-60dc-11eb-80cb-81b40fb1635b.JPG)
 
 •	```./flow.tcl``` is the script which runs the OpenLANE flow.
+
 •	OpenLANE can be run interactively or in autonomous mode.
+
 •	Invoking of open lane changes prompt to %.
+
 •	The command ```%package require openlane 9.0``` imports all the packages needed to run this flow.
+
 •	Next step is to prepare the design. The prep command is used to make file structure for our design.  
 
 ![image9](https://user-images.githubusercontent.com/78075225/106007907-ca6aca80-60dc-11eb-9dd7-56245cae8d8e.JPG)
@@ -340,6 +345,10 @@ After generating power distribution network use ```% echo $::env(CURRENT_DEF)```
 The next step is routing. Before that we will check the routing strategy. In order to do so use ```% echo $::env(ROUTING_STRATEGY)```. After this run routing by using the command ```%run_routing```.
 
 ![3 routing strategy and routing](https://user-images.githubusercontent.com/78075225/106045185-a6bc7a00-6106-11eb-97e7-5c2dd21c5228.JPG)
+
+### SPEF Extraction
+
+After routing has been completed interconnect parasitics can be extracted to perform sign-off post-route STA analysis. The parasitics are extracted into a SPEF file. The SPEF extractor is not included within OpenLANE as of now.
 
 ## Contact
 
